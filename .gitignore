@@ -1,0 +1,43 @@
+# --- WINDEV / WEBDEV / WINDEV MOBILE Ignore Rules ---
+
+# Kompilierte Objekt-Bibliotheken und temporäre Dateien
+*.cpl
+*.wdi
+*.wdz
+*.wdu
+*.env
+*.aut
+*.wbk
+*.zip
+
+# Verzeichnisse für Generierung/Kompilierung
+/[Ee]xe/
+/[Ee]xe_*/
+/[Aa]ndroid/
+/[Ii]OS/
+/[Cc]ompil/
+/[Ww]eb/
+/[Ww]eb_*/
+*.pje
+
+# PC SOFT Source Code Manager (wenn lokal genutzt)
+*.wsr
+*.wsi
+*.wsu
+*.wdf
+
+# Benutzer-spezifische Einstellungen (User preferences)
+*.usrl
+*.wdb
+*.wmem
+
+# Backup Ordner (Standard WINDEV Backups)
+*.bk*
+/[Bb]ackup/
+/[Ss]auvegarde/
+/[Hh]istorique/
+
+# XML/HTML Reports die generiert wurden
+*.xml
+*.html
+!description.xml
