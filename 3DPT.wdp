@@ -1,0 +1,647 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : 3DPT
+ major_version : 30
+ minor_version : 0
+ type : 4097
+ description : ""
+ subtype : 0
+ options : 256
+project :
+ identifier : 0x0
+ internal_properties : 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
+ configurations :
+  -
+    name : Windows 64-bit executable
+    identifier : 0x492200350006b691
+    internal_properties : HwAAAB4AAAAh8KP3e9o9OSW4ppRnrcmmd6l5dHc7gXAv+vn1RI68KIK8yVSLDxHHfSgCCKNp2TW989h71PBvSF7Dl4qtezk0+kQqpfA8GzUauntTWFQqBqLmURgflU3jKayUSrRjE797U9PKVZmHU30oLxqof0VS8q7Nl5oc2GqlAaSARc1/+1KcJyAzR8F3KC6R00mahrtzPXDHSK7ePDzhUsFJYyEFoN6Z5vEle5W5W/K6jSiSPpyHVp9ImwHjgxvSAsEKSkb0ujZCgViatl7DYk1RcD/dNKMMmq0We/olQLh5RgrTcsUA94uTezVSJ0aCgkib4z1TvhzTxvhnkjyFHcEzWJJUmV80Hwa5T9/QT34TUnENyMcrdzV0Y3IFHi25/oC34qq+Aq7GpjCdNUfYOm5uaC8PCJBK2kpQ5ZBkDxS53JP/3Ic7I59KziujX3n5GQkW5R0h0/cwm4fC2pbtlGf8604YoJTb8YFlcUIjx6B1KjzHA3XXwy2yR9OzxIqZ1JMdtPOU0m6FOta1mpSKST4VZf6ngzSC1bROT1W6iwamrlRGOwT3a+vqYAo/l7m2bXmsV9P9fg7oVw6CbXDcpaJKPNTb91Gs7mwYW/lgT1UbqWVqM8T48/q4uiYkpKf97BiLQ9EOG/boRfoNV7y4WN6+Xue3yaGeQcZ3oEHRfhkLKOnrhocVxVfnkHWggi8PblumSAETHI8BMJ8BgSm+bCaOcziGCa/3X1R8tf+QNzis3V3AaxpgHAMpCBw3fa48bb1HVoxsagTwIkaWOfTfYNUAb4gS7K0uLGOOI7bSCOjlvjjmQwkHGeOSPg7n1p1QCZ1UspTbUTFqG4jL5SQCSzJUOH0DmlLSeDriSnACwitW5dHDtVdp4sBoEVuiUUwbv+/4lpytjyIwimtyDKl8qD12hU171eNrjKFLafVNi0Yt8dTau2EU0rAA7rk3cpHf0gMHtu6gqnN1pKo1kYtMPclzdSLKWnWJHoN1yr1ksH0QHCsuVd0sQSgBMKk4SvH5uV3MVtSH3BFysQa0CP4f40jI1pngMkZiJ6Mg9utDCVQoirYEyhj9e2CJYDdzJ5tqtyVn5ZtmxnTtfhjQGE9tpZmcNqdKe7nkPqUGzFFuc0/1ccO4BfnYGVWlXB7il6M7Q+BrQODJGOiHGS3cFn7J8if0S51jc3Vz0xQlMZcJuWTc2MQdAqjvWZN6nJS9CpK9h5hYX61/qDWQ73v3pkl8VCJVIGvQNrFf0b+oasXOF/lp4JbEBUhp9D5gQpoXaz01UcLKeNX6LOyLdCrn+2VyaZmZ2FD9w/xydAw1W3tUyWsjqKLtgYG4u4V6C8Has/nu24zmsyMA0LKxSo/SdgOUiCO2MbhS1i8biGdseDpxPQYpyMEleciJ+zzJCitwNPeUo96vLy1UNcQuopXyVFLnip3NBpw8fVw/2F1YBFvFcPWiyueNA4iyVWqYisY4y1u3VzjZRdXi30QOaTbE+yfDV84FMT+ce0bhy96iME5EnUtcJ+hffx7asLW2yT2/UqrUYlDbKQO/XXiLGhzdU91kUZskSKfniGvu+Wz8FuntYYQyJ+w1n6GONq00+qWuxsIwpiHtAMyP8w+dj6EPd08xsOE8XzvBPPAuZ4D9A4EjNFslxmClp+vQYL2oNceXz4F7QQqkuV3bl7WIf8GmyR9+45qhssU9Wt4C/cY0IO4ayqiy5W2oCMY9mddj2DHgf0pbJ0Zz4v/2Wq/agPI1SbhlIk4XcLmynSlDsvptjigv65Y595T4Fwly4mGYQCrciIUs/l5CnCpIA/8MS1jH6uUefRUrNhBn4QuqM+yf4dO4KycdrG/7c62m/Gtv/s5YCcZmVcbdb42jiKYI6RmHDNaloG9j1i28YXKXXA675WxIUlYJodkrflYgF+NNUThdZ3HEvzMxvjLKTVm2mEzuxo4hMWCZk2ADkESLEvMojQlNdN9fuyaM8gmCxuUUO57UV/B4LD1IqI/H4lo7Y4uNs/ZrBR8nrJsxSp6eOe8kkCXC3BYvCNtbP7kjHUqCcNJEdgzY3706g3U46q9ul/LSbhXjm8hVHTSssmJjodhOh1SCCuO+g58UvVL5XiE+NS4N5TRTVgfZ091BNokYAzWtlFgrWg4wino3FWRAmOcQAJrneWXpGWiOsCJJvtuUZzmYYLJHv/4ScWUQstnrxv2rv0UXh5Nip4YS2aXbEml+z5kreKNCoxtBhlldNYTqdXymtr2hiv0Ejg5u6neNfW5EbQvhPjEcDGX1eDnIyTaz3EZ6huXYeaJqYOuYBEOA2UuY7G+QF/q0xJNBZB7PIAfHzT4SExdVbEEe9Cd7NtTdpdqMQkvixAL+6f4Ixzc4jZPrTuckWW9RGq4K1oEibMQH0l1EnCjo7/S0bynJaXLymnoChPTwA4r71fSjU4uo2jVBWul2Ky4lIa4B33nu4MiEZCyW0nn7Knmirog5CEzsa7MNJvnarIl0gXRS1zyZAUoKqI00K9wl0H5W9XIgGxRG7yMZGkU8o+GOR/VwNUwjoC5Hi6gYAA2/H/AlL7JHexAk4fePi0rqKlU9eNeYkyT36k8gKOuX3Mj1lMHU5EQrweEF8XyMdS2KI8d3VBpLc5gHSxAUMoa4QGh57Nbq8GJ94j5XHvWgJlbpbW0m2ozQkHAy9CbaWe4Xf5RSQ5Q/yySS5W0vhaws/0I9pjUp9WcF9VqWhf/xyISBMvILz9xVp0dmY9LXY0pFyIb/MMyLxfaIBYNJpd8PO389Zh399r4t5dWYzk+ClscL1whIDxxcc4m3kjLZcR92hjPaFzB63Kymowew7NTZjf89U+shHuG19zTCAWqPotk06+mkDW/pVED9+dlhLy1P0MC5duCSLzdOzWwumSABPn2SVkbcRBueXW1WC1u8kJaEeD9UXSMI+8Y1LZPZofQqUOp6Q5r550wyE2U3+3MPa/Ja7EBt4YVZQuLrGWkj5ByY/REhlgbNeat6+Qm5PYvXlQxjUnWIvfB7wVWv0rncUt5OoiS2uqRiyJlwLMhDymRcCBf5YmhSUURnTP7F+Irp8hbW+sZ4xdIxNRiu3hMVSdQMlDYD1sh2pULYYfn+EImmpcCrBGTd+cxSnGwiYIoGOWCL+7hV5YWsvLV3ktKQMjK66SwpdtqHSBEFLqH8eoorkNDoe6siXuTzwl/pB/G2P1SPgglO2yrkU8ChNZcfIRAa9ERp5Q2/1xTsqH9+jwg00KlIjo0CS2uKqrhgOs06CkK/Jr+1vfZvKr00uqyF8k2Jy3wP6xWw2VbxOkGwd8HbBhy9CoNvThtOfO/qs11pAMPPEG7/y2MBHpIt3KJ542q61zREuUAAo9Jqm3/CAyR2Mp8ZE2ayXeSsVf+oKLRyB42RuWmhskTgNWWsIai3f+9hUmbxE0MiucaEiwQl2xYblkhg0er5v/DVbwANB5xk7Y4yFnSci3q+ayj+Cg8c9105YiDy+MEnK4oXuIeRK+M06znqWZqYULJoM523JNDrDOxQMjwB4J3uZhNCDIba4IHhMiHAy0jKrJ59pBeA20BtyeOJdHfDP8eONCkdUJL3r6dDpgvRyN4/TiXR/2J391Epc/C4qqDPtDX8iBBxwK8fHQksC5BNv3AbwBx6v16jbAp5YXhkDsRi7fL74Xk+4xhhmhm5ei54Kd8F8l8jaAyvMfrwPM5k47iEN0j58S32ophm6F1zw/CwAZzdUPQv6fjpN523kEptMZjQcSdFdML7urTiGE08bJWCIUvR7PPJN1vxgrxMBlpUpBMA9C3+q6SrKuvLUpx1yEE+arNHsmw9x791bMjFEDKoiXfGZShfNP+JZAjG2MVLMZv5UfCzDAxXdiTcoFfif4pa5gRYHA/5bwebcg2Ns8mS+UB2zJfPgmuxMXuVpUv4M+0Tj67F3DwA8WOBA+xD2Pb+ulUYcsQkeDeE5OxM4fs5CQHWTP/jmc4qOiyMboqvplYjCUb+Xtfyt4RS5w9/DZiDxoTN42eREDeDvDGp8W/usPj49VfXK5LH/SUvxeSJsiP6EnzNYk6LXFxZwsUKolVwHyTSrNojRT1zoK7EHvlYA/sy3nKGB27paworv2lc7a2xoVGAkUtuzKWukz1gCg3At58k7+zLLmX4+OHNOE1UP+nuXH9vq6ZsWDY8nublmLZxRvEooHAVJrn9Y7cWkgOAWlkVbH4h+qA7ssv1Xds+gaq9ATF5H03TGGSP1SpghFSmWWeUm2E930JAWGpuQDpZabQwpzijuBkYr1q25YJRu2fzlyAbm4ZnQQ6KzbLFtns5mn6thTCiDjrpmbR7bOvGsZHxBgctGLFfHtKXILnapTn0ZDti4MoiPQmer+TP7GZJddwQRIYrV6FBN5rEaE+b62UdQ2LStYDg4sRvs/WCfW0D/GsydiA45x4a4lqG9RF159g8ZajS3/zwjYMSXMm3PD8SgNOvu4oUusgDaUovAWyChXr2joYGI6u9QHa51vUGaZxPAjagdW4J/xQ37uU5/EzrsXZaRdkQ4Q1ib6wZ+bMpcXGmFtuiQ37PdRYCfLmGua7Xzy7KcLIHzf+Cpfb3Fj6x9s3kWwT8SeLvC70MqWfDq7fzGoMWx6eb5GCH4LYSBM0Hk0WmgfvhlNBgl243xUz3bvmdoGNOvmnJH7P66ClvWa6OrgtPWhDMxRBsUZhI6o7TnQXjpecm4WslHCm0MoCLJdVmnoP2SMPdNX/ghF/SdpMAGyZDHEXvUKyn+5NiLtGgOS1kEo/l1WIiW3X8ZuMVBB3JsQwGFXE9enMLrbgyxhidLjMn7spCD9TV7SzIHO5QphgSXrQvGjTceBKYIwDPcLVxDn8e5HceYtXiA8+PD+ejPOKwa9xFEH0veGHf+N9Yt60fbImqigpP2/8Nb1rER+eV5cJgqDcBswS25YHabf+hO+syV/XF3GU4aSdq4pQrNzukCi8gMri4UOq0eHdczmvroaG50Q+c58upqvag91p4CGGeaZBAzonAn89JlBvZ0JRwFiga7aqK+rFQrYq6biS/HjcxN26ifIrp2emSZw2MB2IjfUY7mJg48tB8z86q+KPJHzZQ53VbLoQ281vsjWdb7ggAafYHxRytdo6p8DuKrAOzBS62vHlV/9Vvr/y/Yf7CwUm+4WXKY1FiQ5XZcrUUpcroQ6Pe/fRnZ7mQ2s3ww7Mdy9PWW/l09aVZpo23TrWZDC2MYoLvtjb4vBlXlhFPV9s+161SMnI3SkBzVfEdE5uFEYsOv/EmTHuF9xeY64yiZrQnUNGdji5DKOjQQx/qP7f7K/RnhJtHurMwQ48Ng8e1k4dyVxOKFfUS6lGmE8f/WN/9bpnbdyfwK40Ax+/iCQ8sElMZy5bdd9a4KObSst1sFQ3dX3IN1DDUYl/ijLqizdR/tzK3KEybUoE84ANDed3ZB/SAPMqQtYlc6WspfXZvkCEXhyrpnqyhzTHNYlTZnVYWvYn+5w07s34TufLlZpisNC1oobewtJkrRZwRxB+oB1n5IdgtTCyRZ5x/h+d2L89BuhkQg5ic6uczrgE6Tl+eldO/RbFpBoA+pX5oVO2KbwaCigYvFnj2roNwLAF7HrZRclDjrQhflPye/5ZkbekhRNlK3G7e9qm+EZcORdeGtgdN1BgNm2ubuwCQcNuvdMa2Qnx34dOQmJUvRfALHb4btZfdIgwb419TS2KNUV1Z5r0JqO3cFolZyuXXI2PAk/ypFENh9MGYUt0hbE5xsw5Lj53+jE/M1zbCmw0Zt4Z0JUTwi6exMvtKeeI3zyfbITP4/dQwgX9ICsH9X93BLMlXCF+9lBV/7wFE7C6UvWaFqdgPfsNN7g3GVy1Dv4xk3cftE/GYwP4UO8tQiqszmqr8fTfEKEY5pHt88nk6pu1X9+xH/AZe3/86UE5j3zgeGCzWdgVvDmmqums9eYk22knAwZ/cBVheDbi0GtkZym2BuEOo/iDi2TVKiewnZKu4MyZa3Aq96ymt6o8yt7z93zxPhaDglbdndL5uNRJts0KnHpx/FQKJz5G5EgUckUD12mQF3otVjJBtbUE/mz+R2v0BirDYQXhUIGyAH5A1N9dnFPB+456/ba03CwvPyguQiDaxcQbJIZqxpdDJxp2QqvnKUg4hSSZC6AphL7T7UcXafEc5wNCD3zLa4KP242/JS45rzIjx+dj2hSw4PHaeaVlZdmr+ajbcRoqp/2XJLGv+2nCB/gFNPjVNheWLf6G7T68BT5FSUEpwyjYtPp9X0FvI8AfkeKqvjs2bztWnANc/8pFA4xT1NyvSESaeNCRSTH4D2CVUWbJSSTUkW/+Z2i722ye6cr4EeAwE5VyXhdksWIokzRAYPRVlHaaipq+U24QyfoH6QMa659wBXmgLa1HxLku2+jtrEGJW/9MNhgyar76byT7DKFWVZ0Kwr22tHwXLLpONek1VTmEUR312Ar2IINCDeeSzdPeaujd6jkiiAcAUzaiQR0mWGYsGMy7LEiOx9K6JQ7B47zRwGrA9qVQmgWJFvSIw3HBslc6YYze6HjXM7nMP2Mm52Zh5Xm6ce1A1VHgi6Y3noIYz3L8pDDQowwSmsyjGiGwsdzmHZtRn0TGehpNWJiSDtKA/bQAgY+1vl+OSAzGnCsBxiWFjfJrgYPAxcQuXSrZJSM4qh3mcvclx7BxTcn0NCpWaLHZ5Hgtqu2u2pV2ZOl71n+D+SCo3xIajq6f+x83mSsoKsj/eB9w6KqmFJvfglWVvGUOsU6CRVUfW8YK3KW0lr+2nMN8E6SGDDqjlQlozhU/I/OcmyapiwjAKW9hiKvoyUBSGTdLdGbtGYK1pdQS2PjwQA+E+A+f1ehz53lg1+fv7QdJR4v8fDZDyo2ReN+/tC0FU89Dh5XfqRAEOittpa6vxYlmi7+lr5L5un7maNW0FWDatAutWAl9Ta85yFAoAqsMaxGo82TSNI0IjVHffZ2d5IG/D/tp4FiA8nRlW5FlHHY61Rk3N31Ruf4gUcSOgJubmum++WgAYjIUFgVmD2ny8BwVg5lZneK4Gcf6Xr814LEgeJd5TH35a9XUckOGqSqVq5M+yp7HBI0AYFqXK2IZr5LWlHDrL2djQosnq06SWWOZUcCp8FTBcfGcrkfmM8tBMOSWp8xoYxNGDLonpSzf6z5rNQRcAAPvUeXan8Y/uMNqbrVQYLD7nJHL88uyJVZAMraT95fTnYK1eWh+PVSNpcqlecZeF/F7v8GoDj5UFv1GYpa5KWtPvfE3RhvTwAkrdDPno7v5zF0TZzeJKgvKqvy7XrIoKkzcEDZEktnaE2EWcYQMlN7jSg4BkLVvZJ21+RZpHo7EgemusehGhYwGfiJ98d1PRUiwJDpD/tXdxy9Z1lqhM2GcIhY4SvSEbhd/KUeaNaXv4musQFH0hG2ksoUCtk3dl7pAdBpBDlZdrEYRjXHFX1Vx+vzhED3+FAVvMM4ChZMAzVw84pOOjmVkzQ8pXSpICfRnrAuywYqLgtMb0V9qNBhBSH1NivNppiTOganNNrb8yTEi6RGnTUaP57DvQ7e1v8kzpMhRz2xn1n4hHqOvvfklkcYUHtiXvKXN8sF2wVka713TdeTqiIuCEb1a3iEzJOFo75HiMTM/P8n1S7iP76XQOP6y+i/sx34UWlaL9303U9HF+YBVFx6vMWdhlWJISi+eVJJjK7vaUyJThTJD6SmBU0T/t/N5GNouKnMJTCrYn6W3CVUILJ0KHsbGpSjNOaI+eFibGGCGucZqwm3/Oc774aJvi2DJ+XaI50KF21afLN2TdaKq9g35lYrGiEyY8UIZCJQFWgpcfBhDZou6522LEsOFzQDtUk3UXv7qzrUhK9kAtPLcPa/o8CVzBExcjRbcRLnCxlut2bHCt5rOO/gE2ls5Zrt95mQgJU9+H8R8xtd+nrwq80vuBBk4gvbckTkzUfW8AOyqsHEjRGqv/jpBHbR+Rb5y2sNr+hXmzQ6kpwnNY7NH9kElzFEk3/0nE2NqwbIM2GSUim7qEzeBt4PfzcKDiLVwiabTYoVaI4KyrHyusT6MjHUZEOTIZl+xlcVybFY9wvmehK1dztCYxLTu/Luqbf7nHRfue5Ito0MTgosmNhV1a4SNZfT4jTubvBUExCRrHzN4nU9No9XvGxNvOfg/pMj5TZ0F1IFDUZFBTiDctOOzCmlW1AGMQ5CZcZ2BAEKUTcc4yoDlReVT5DBWVXQjMAGU0cRsI+v/RFoYJbf4fmdpqaqrS3TzZ2PB8AV2ea/WkcLTS+m28UQ7qegWp6lfrptQQXCCzWqOaWFTdgSLn0+AUyKTYzVSNQtpK0++cJZn2YKRABBngxZ6aOrebiHV3OMwAgNTAIaaap4X8XlSs+PY/XnNfyHl19rEjkPJjmCJOmJRwy+bt1b85qySVkouj1Khxl46bui8U0sNMZsc3QQ5c2CpyfWtUvX8dpIYX2D1y2BTmvqmoBO/p62JtziOHNoZGJFhBgKGgJIDzj5xZy4QzqUtxZ/cVCS8ttJY3xN6zTdehy1yLWbpSwkFdrn+DIu7uDkbZ0DXKaHT/m4i0QGnVwHjK30m+9xSA84+cIaPKFhYGX3KpAh0dv0JIBtO35QvJRR+yUb7WMjKvFwQJ/bA6ulgMH4abhkzIVztoYVwJXd+N18pxhomPjQKkEaYXXoJCxv6TUuPa/JgXc5BdwZf78S9l8D/s6ywopf4P6NqZB80bQ6xT9MBm9m3I60jp4LRo+P8Fn9xNAIicFiFlYrrV24du553HtFbEXOaWjQmg1h2ZS8UCH3KKVVlGV8j/LlGryTjE8pQ9Q0JPiIrV74Ilj8yClXRJfLpa167vEApABoZRpbYV4uVGSmGU9RGb+YHvALREZNQfEbi9MjMDrnSoRBDhbRMBsNjl/O89PDiaWvoTqs+uZmnvnaIZxYu41yQ8J4iwn5g9Hp6tZrWTjUIVY3JRgELRRUj2JVrrEgcGUZWHzcAYqw79OcTeHxwr9jB7uYDrfUg9SjpaR9uYNoae+5VAxE41fgoHE8TyYwvln/aLd8qYy6in9jdDH8gS9RcyEcbyyYPKx/AIimcsO3xAVXtUJ8RM/3btPk1ACE1eRB3Llzd+Cvv/7XYWJ7w4HFTQMnrrAuM+mro5FbZrVRhEzsmTnKJPRIAeoz/8V+umGN+Z48xcvzijEJH1JkHOCzZFrwGH+D3Ud2BmU5HYiMMrxrL76uF6lTx+aRLwVWE2uIODcBJVMqAKaoW+KJ6ZR2P9j8tLAvLzMTOsxEG6JlTmJkpxjt1xHf9t5vgQmT+B21YqR6iz7TAe29nOS7g55SBuTJCg5IYuWUVeIFQHezdayhSV+iESqcb3+e4fVVW7jtlLjTBSn3oLv8+Lavb0Lk0J/qiW4Hc063kCceoWKG3n7Zz24xlTYMam0xABvrHUK6N6xHs7MKGcu8l5ajaxEQ3368LArJpUBDynYNMYDYGFv+Ts1/Z7N/yLrfHvXHdfgGQS8p6F9mI2SahgGFV4sMApzdySt0h+njzEBoZlWRiCRERo9cESK6+9RiAd4nzRHx3Np7Jp8jufPbAic9ROG0nLTyW2bYZH4cNAYgPERgm5O8X4Y4qjqo6eJQZHjIgjXafnrb5lgk/VV9g0MaIcVswICF7JAB008uJfPu8wTAWpY5fNVvPY501Z1viFT0li0hICWs/GL2aA7HcRYs+x+2mr6UPUwxQJ7XgFaYq6xIMX3g62qWhJZGDMVTHCY10WTtYwdOkIKSYMGKfDMKW/lG13J31mvVJxtCCRLdYXKWrQFFB0/PMc1w==
+    configuration_id : 214909151376045728
+    type : 1
+    generation_name : 3DPT.exe
+    version : {}
+    language : 3
+    64bits : true
+    code_elements :
+     type_code : 159
+     p_codes : []
+ elements :
+  identifier : 0x492200350005b691
+  elements :
+   -
+     name : WIN_Main
+     identifier : 0x4922007c001eca24
+     internal_properties : HwAAAB4AAABO2GR3RxQugXV57DwYHtDgEqKX3zNe3hQ5kyCsyc8yZvLn+BcNFEeOf0APl6EDdAnvO81EA1+SgpNBzQ==
+     physical_name : .\WIN_Main.wdw
+     type : 2
+   -
+     name : GlobalProcedures
+     identifier : 0x4923343d00747978
+     internal_properties : HwAAAB4AAACEErqxjcL0R7c/qlrmPPZOZtCd9eryVv7ni+WAPELLfftiZUAW/2uGX6Tl+cPhFq81gYsGTRVMPFmHgw==
+     physical_name : .\GlobalProcedures.wdg
+     type : 7
+   -
+     name : cSpoolman
+     identifier : 0x492321e3001fcab4
+     internal_properties : HwAAAB4AAACWYLy/j+y2+b2RBISwJmgI7sLvJZN2gsB5F8M848ARvEg1suk/9iXii7xHnymLLIGn83XsKxdKOluZlQ==
+     physical_name : .\cSpoolman.wdc
+     type : 4
+   -
+     name : WIN_Eingabe_der_Filamentrolle
+     identifier : 0x4924bb7d00d2370e
+     internal_properties : HwAAAB4AAABUIkpBPVIk92fPWqoWDMb+OOw+YSyHwhr3fxad/d7PtbEAv9JAhkKhvXY1qbMRZn9lsbtW/aXcTKlX0w==
+     physical_name : .\WIN_Eingabe_der_Filamentrolle.wdw
+     type : 2
+   -
+     name : WIN_ExcelExport
+     identifier : 0x492713d10201f370
+     internal_properties : HwAAAB4AAAAyzCg7C3hyxcGtMNBswhSk1cYbY2AG/NpLqRZlwTS1CNSZIqXLkLStru9LU2VPoDW7DxmIz4vGtsc1MQ==
+     physical_name : .\WIN_ExcelExport.wdw
+     type : 2
+   -
+     name : cMESGateway
+     identifier : 0x492868d8012a22af
+     internal_properties : HwAAAB4AAAAn80tOOk9hwjpSPwm1baef3pWauOgNUWtg7A2SRIfwsbR7Kg/dkFOAgQpWSBKyx97CFhCBwJrXSaooJA==
+     physical_name : .\cMESGateway.wdc
+     type : 4
+  other_elements : []
+  array_of_analysis : []
+  net_assemblies : []
+  uwp_api : []
+  external_components : []
+  internal_components : []
+ data_directory : <ExeDirOrDataDirCommon>
+ common_generation_directory : true
+ user_groupware_executable :
+  internal_properties : HwAAAB4AAAAkoB+fdku1PpbrcnzP2GP5h3ykyFb4kqRSy8XFATg0Y/lCXmmPbGUFjl1MguqR2APWvuFznSMSmTE/OEfewtAbTCOR+LOeOf3CsOYyQzGfIvfk931B1mr2/A==
+  connections_history : true
+ user_groupware_site :
+  internal_properties : HwAAAB4AAAAkoB+fdku1PpbrcnzP2GP5h3ykyFb4kqRSy8XFATg0Y/lCXmmPbGUFjl1MguqR2APWvuFznSMSmTE/OEfewtAbTCOR+LOeOf3CsOYyQzGfIvfk931B1mr2/A==
+  connections_history : true
+ languages :
+  - de-DE
+  - en-GB
+ code_elements :
+  type_code : 0
+  p_codes :
+   -
+     code : |1+
+      // 3d-MES
+      //Du bist im 3D-MES-Container, und dort liegt die Datenbank eindeutig hier:
+      //
+      //app/data/data.db
+      // data/
+      //data.db      ← Das ist die MES-Datenbank
+      //data.zip     ← Vermutlich Backup/Export
+      //files/       ← 3D-MES File-Store
+      //import/      ← Importverzeichnis für G-Codes o. ä.
+      //logs/        ← Logfiles
+      //temp/
+      
+      
+      // ============================================================
+      // ST_Cams
+      // ============================================================
+      ST_Cams is Structure
+      	nCamId		is 8-byte int		<Serialize="CamId">
+      	nIndex		is int				<Serialize="Index">
+      	nFramesSec	is int				<Serialize="FramesSec">
+      	nScalH		is int				<Serialize="ScalH">
+      	nScalW		is int				<Serialize="ScalW">
+      	nMirror		is int				<Serialize="Mirror">
+      	sPath		is string			<Serialize="Path">
+      	nActiv		is int				<Serialize="Activ">
+      	sCreated	is string			<Serialize="Created">
+      	sUpdated	is string			<Serialize="Updated">
+      	nDelete		is int				<Serialize="Delete">
+      	sName		is string			<Serialize="Name">
+      END
+      
+      // ============================================================
+      // ST_FilamentStores
+      // ============================================================
+      ST_FilamentStores is Structure
+      	nFilamentStoreId	is 8-byte int		<Serialize="FilamentStoreId">
+      	sDescription		is string			<Serialize="Description">
+      	sCreated			is string			<Serialize="Created">
+      	sUpdated			is string			<Serialize="Updated">
+      	nDelete				is int				<Serialize="Delete">
+      END
+      
+      // ============================================================
+      // ST_FilamentTypes
+      // ============================================================
+      ST_FilamentTypes is Structure
+      	nFilamentTypeId		is 8-byte int	<Serialize="FilamentTypeId">
+      	sColor				is string		<Serialize="Color">
+      	sDescription		is string		<Serialize="Description">
+      	rDiameter			is real			<Serialize="Diameter">
+      	nBadTemperature		is int			<Serialize="BadTemperature">
+      	nNozzleTemperature	is int			<Serialize="NozzleTemperature">
+      	sCreated			is string		<Serialize="Created">
+      	sUpdated			is string		<Serialize="Updated">
+      	nDelete				is int			<Serialize="Delete">
+      	sManufacturer		is string		<Serialize="Manufacturer">
+      	cyCost				is currency		<Serialize="Cost">
+      END
+      
+      // ============================================================
+      // ST_LineManagers
+      // ============================================================
+      ST_LineManagers is Structure
+      	nLineManagerId	is 8-byte int		<Serialize="LineManagerId">
+      	sGroupName		is string			<Serialize="GroupName">
+      	sCreated		is string			<Serialize="Created">
+      	sUpdated		is string			<Serialize="Updated">
+      	nDelete			is int				<Serialize="Delete">
+      END
+      
+      // ============================================================
+      // ST_PrinterGroups
+      // ============================================================
+      ST_PrinterGroups is Structure
+      	nPrinterGroupId	is 8-byte int		<Serialize="PrinterGroupId">
+      	sName			is string			<Serialize="Name">
+      	sCreated		is string			<Serialize="Created">
+      	sUpdated		is string			<Serialize="Updated">
+      	nDelete			is int				<Serialize="Delete">
+      END
+      
+      // ============================================================
+      // ST_FilamentStorePositions
+      // ============================================================
+      ST_FilamentStorePositions is Structure
+      	nFilamentStorePositionId	is 8-byte int	<Serialize="FilamentStorePositionId">
+      	nPosition					is int			<Serialize="Position">
+      	nFilamentStoreId			is 8-byte int	<Serialize="FilamentStoreId">
+      	sCreated					is string		<Serialize="Created">
+      	sUpdated					is string		<Serialize="Updated">
+      	nDelete						is int			<Serialize="Delete">
+      END
+      
+      // ============================================================
+      // ST_FilamentScales
+      // ============================================================
+      ST_FilamentScales is Structure
+      	nFilamentScaleId	is 8-byte int		<Serialize="FilamentScaleId">
+      	nFilamentSpoolId	is 8-byte int		<Serialize="FilamentSpoolId">
+      	sDescription		is string			<Serialize="Description">
+      	sCreated			is string			<Serialize="Created">
+      	sUpdated			is string			<Serialize="Updated">
+      	nDelete				is int				<Serialize="Delete">
+      END
+      
+      // ============================================================
+      // ST_FilamentSpools
+      // ============================================================
+      ST_FilamentSpools is Structure
+      	nFilamentSpoolId			is 8-byte int	<Serialize="FilamentSpoolId">
+      	sCreated					is string		<Serialize="Created">
+      	nDelete						is int			<Serialize="Delete">
+      	nFilamentScaleId			is 8-byte int	<Serialize="FilamentScaleId">
+      	nFilamentStorePositionId	is 8-byte int	<Serialize="FilamentStorePositionId">
+      	nFilamentTypeId				is 8-byte int	<Serialize="FilamentTypeId">
+      	sIdentifier					is string		<Serialize="Identifier">
+      	sInfo						is string		<Serialize="Info">
+      	rLength						is real			<Serialize="Length">
+      	rLengthTotal				is real			<Serialize="LengthTotal">
+      	sUpdated					is string		<Serialize="Updated">
+      	rWeightNew					is real			<Serialize="WeightNew">
+      	rWeightOffset				is real			<Serialize="WeightOffset">
+      	nPrinterId					is 8-byte int	<Serialize="PrinterId">
+      	sNfc						is string		<Serialize="Nfc">
+      	rWeight						is real			<Serialize="Weight">
+      	bDry						is boolean		<Serialize="Dry">
+      	nSpoolCount					is int			<Serialize="SpoolCount">
+      	rHumidity					is real			<Serialize="Humidity">
+      	rTemperature				is real			<Serialize="Temperature">
+      	rPower						is real			<Serialize="Power">
+      END
+      
+      // ============================================================
+      // ST_Settings
+      // ============================================================
+      ST_Settings is Structure
+      	nSettingId		is 8-byte int		<Serialize="SettingId">
+      	sName			is string			<Serialize="Name">
+      	sDescription	is string			<Serialize="Description">
+      	nType			is int				<Serialize="Type">
+      	sCreated		is string			<Serialize="Created">
+      	sUpdated		is string			<Serialize="Updated">
+      	nDelete			is int				<Serialize="Delete">
+      	sValue			is string			<Serialize="Value">
+      END
+      
+      // ============================================================
+      // ST_Printers
+      // ============================================================
+      ST_Printers is Structure
+      	nPrinterId			is 8-byte int		<Serialize="PrinterId">
+      	sBambuAccCode		is string			<Serialize="BambuAccCode">
+      	sBambuSN			is string			<Serialize="BambuSN">
+      	nBaud				is int				<Serialize="Baud">
+      	nCamId				is 8-byte int		<Serialize="CamId">
+      	sComPort			is string			<Serialize="ComPort">
+      	sCreated			is string			<Serialize="Created">
+      	nCurrentPrintJobId	is 8-byte int		<Serialize="CurrentPrintJobId">
+      	nDelete				is int				<Serialize="Delete">
+      	nFilamentScale1Id	is 8-byte int		<Serialize="FilamentScale1Id">
+      	nFilamentScale2Id	is 8-byte int		<Serialize="FilamentScale2Id">
+      	nFilamentScale3Id	is 8-byte int		<Serialize="FilamentScale3Id">
+      	nFilamentScaleId	is 8-byte int		<Serialize="FilamentScaleId">
+      	nFilamentSpoolId	is 8-byte int		<Serialize="FilamentSpoolId">
+      	sImage				is string			<Serialize="Image">
+      	sIp					is string			<Serialize="Ip">
+      	nLineManagerId		is 8-byte int		<Serialize="LineManagerId">
+      	rNozzle				is real				<Serialize="Nozzle">
+      	nPowerAutoOff		is int				<Serialize="PowerAutoOff">
+      	rPowerAutoOffTemp	is real				<Serialize="PowerAutoOffTemp">
+      	nPowerId			is 8-byte int		<Serialize="PowerId">
+      	nPrinterGroupId		is 8-byte int		<Serialize="PrinterGroupId">
+      	nPrinterState		is int				<Serialize="PrinterState">
+      	nPrinterType		is int				<Serialize="PrinterType">
+      	sPrintername		is string			<Serialize="Printername">
+      	rSpaceDeep			is real				<Serialize="SpaceDeep">
+      	rSpaceHeight		is real				<Serialize="SpaceHeight">
+      	rSpaceWidth			is real				<Serialize="SpaceWidth">
+      	sUpdated			is string			<Serialize="Updated">
+      END
+      
+      // ============================================================
+      // ST_FilamentHumiditys
+      // ============================================================
+      ST_FilamentHumiditys is Structure
+      	nFilamentSpoolTrackingId	is 8-byte int	<Serialize="FilamentSpoolTrackingId">
+      	sIdentifier					is string		<Serialize="Identifier">
+      	rHumidity					is real			<Serialize="Humidity">
+      	rTemperature				is real			<Serialize="Temperature">
+      	sCreated					is string		<Serialize="Created">
+      	sUpdated					is string		<Serialize="Updated">
+      	nDelete						is int			<Serialize="Delete">
+      	rPower						is real			<Serialize="Power">
+      END
+      
+      
+      
+      
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // ENDE
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      // *********************************************************************************************************
+      
+      
+      
+      stFilamentSpool is Structure
+      	iFilamentSpoolId			is int
+      	sCreated					is string
+      	iDelete                  is int
+      	iFilamentScaleId			is int
+      	iFilamentStorePositionId	is int
+      	iFilamentTypeId			is int
+      	sIdentifier				is string
+      	sInfo					is string
+      	iLength					is int
+      	iLengthTotal				is int
+      	sUpdated					is string
+      	iWeightNew				is int
+      	iWeightOffset			is int
+      	iPrinterId				is int
+      	sNfc						is string
+      	iWeight					is int
+      	sDry						is string
+      	iSpoolCount				is int
+      	sHumidity				is string
+      	sTemperature				is string
+      	sPower					is string
+      END
+      
+      
+      // Universelle Zeilenstruktur
+      stRow is Structure
+      	data is Variant     // komplette JSON-Zeile
+      END
+      
+      // Universelle Tabellenstruktur
+      stTable is Structure
+      	rows is array of stRow
+      END
+      
+      stFilamentType is Structure
+      	FilamentTypeId		is int
+      	Color				is string
+      	Description			is string
+      	Diameter			is string
+      	BadTemperature		is int
+      	NozzleTemperature	is int
+      	Created				is string
+      	Updated				is string
+      	_Delete              is int
+      	Manufacturer		is string
+      	Cost				is string
+      END
+      
+      stCams is Structure
+      	data is Variant
+      END
+      
+      stFilamentStores is Structure
+      	data is Variant
+      END
+      
+      stFileGroups is Structure
+      	data is Variant
+      END
+      
+      stLineManagers is Structure
+      	data is Variant
+      END
+      
+      stMandants is Structure
+      	data is Variant
+      END
+      
+      stPowers is Structure
+      	data is Variant
+      END
+      
+      stPrinterGroups is Structure
+      	data is Variant
+      END
+      
+      stPrintJobs is Structure
+      	data is Variant
+      END
+      
+      stStores is Structure
+      	data is Variant
+      END
+      
+      stFilamentStorePositions is Structure
+      	data is Variant
+      END
+      
+      stJobFiles is Structure
+      	data is Variant
+      END
+      
+      stJobFilePrintJobs is Structure
+      	data is Variant
+      END
+      
+      stFilamentScales is Structure
+      	data is Variant
+      END
+      
+      stStorePositions is Structure
+      	data is Variant
+      END
+      
+      stPrinterPrintJobs is Structure
+      	data is Variant
+      END
+      
+      stFilamentSpools is Structure
+      	data is Variant
+      END
+      
+      stPrintJobLogs is Structure
+      	data is Variant
+      END
+      
+      stSettings is Structure
+      	data is Variant
+      END
+      
+      stSpoolLogs is Structure
+      	data is Variant
+      END
+      
+      stPrinters is Structure
+      	data is Variant
+      END
+      
+      stTrackings is Structure
+      	data is Variant
+      END
+      
+      stFilamentHumiditys is Structure
+      	data is Variant
+      END
+      
+      
+      // SimplyPrint TOken:
+      sSimplyPrintToken is string="8309a252-8bd0-4535-a688-21c2075db42e"
+      
+      
+      // =======================================================================
+      // STRUCTURES — SIMPLYPRINT
+      // =======================================================================
+      
+      // --- Filament -----------------------------------------------------------
+      stSPFilament is Structure
+      	id				is int
+      	name			is string
+      	brandId			is int
+      	brandName		is string
+      	colorId			is int
+      	colorHex		is string
+      	materialId		is int
+      	materialName	is string
+      	weightRemaining	is int
+      	weightTotal		is int
+      	diameter		is real
+      	density			is real
+      	price			is real
+      	isActive		is boolean
+      	typeId is int
+      END
+      
+      // --- Brand ---------------------------------------------------------------
+      stSPBrand is Structure
+      	id		is int
+      	name	is string
+      	website	is string
+      END
+      
+      // --- Material ------------------------------------------------------------
+      stSPMaterial is Structure
+      	id			is int
+      	name		is string
+      	tempMin		is int
+      	tempMax		is int
+      	bedMin		is int
+      	bedMax		is int
+      END
+      
+      // --- Color ---------------------------------------------------------------
+      stSPColor is Structure
+      	id		is int
+      	name	is string
+      	hex		is string
+      END
+      
+      // --- Printer --------------------------------------------------------------
+      stSPPrinter is Structure
+      	id					is int
+      	name				is string
+      	online				is boolean
+      	status				is string
+      	progress			is real
+      	tempNozzle			is real
+      	tempNozzleTarget	is real
+      	tempBed				is real
+      	tempBedTarget		is real
+      END
+      
+      // --- Arrays ---------------------------------------------------------------
+      stSPFilamentList is Structure
+      	items is array of stSPFilament
+      END
+      
+      stSPBrandList is Structure
+      	items is array of stSPBrand
+      END
+      
+      stSPMaterialList is Structure
+      	items is array of stSPMaterial
+      END
+      
+      stSPColorList is Structure
+      	items is array of stSPColor
+      END
+      
+      stSPPrinterList is Structure
+      	items is array of stSPPrinter
+      END
+      
+      
+      // *****************************************************************
+      // Spoolman Structuren
+      // *****************************************************************
+      
+      
+      // Hersteller
+      stManufacturer is Structure
+      	id					is int
+      	name				is string
+      	website				is string
+      	country				is string
+      END
+      // Händeler
+      stVendor is Structure
+      	id					is int
+      	name				is string
+      	website				is string
+      	address				is string
+      END
+      
+      
+      stFilament is Structure
+      	id						is int
+      	name					is string
+      	material				is string
+      	manufacturer_id			is int
+      	vendor_id				is int
+      	color					is string
+      	density					is real
+      	diameter				is real
+      	price					is real
+      	spool_weight			is int
+      	properties				is string	// JSON-Eigenschaften der API
+      	manufacturer			is stManufacturer
+      	vendor					is stVendor
+      END
+      
+      
+      stSpool is Structure
+      	id					is int
+      	filament_id			is int
+      	initial_weight		is int
+      	used_weight			is int
+      	remaining_weight	is int
+      	price				is real
+      	lot_nr				is string
+      	comment				is string
+      	location			is string
+      	first_used			is string
+      	last_used			is string
+      	created_at			is string
+      	updated_at			is string
+      	spool_color				is string		// <- bei dir vorhanden!
+      	weight					is int			// <- bei dir vorhanden!
+      	filament_name is string
+      	filament_material is string
+      	filament_vendor_id is int
+      	filament_vendor_name is string
+      	filament_NozzleTemp is int
+      	filament_BedTemp is int
+      	filament_ColorHex is string
+      	filament_TempBereichNozzle is string
+      	filament_TempBereichBed is string
+      END
+      
+      
+      
+      // Struktur: Bulk-Filament-Import (optional, nur wenn du bulk verwendest)
+      stFilamentBulk is Structure
+      	name				is string
+      	material			is string
+      	manufacturer		is string
+      	vendor				is string
+      	color				is string
+      	density				is real
+      	diameter			is real
+      	price				is real
+      	spool_weight		is int
+      END
+      
+      // Struktur: Bulk-Spool-Import (optional)
+      stSpoolBulk is Structure
+      	filamentName		is string
+      	initial_weight		is int
+      	remaining_weight	is int
+      	cost				is real
+      	location			is string
+      	lot_number			is string
+      	order_number		is string
+      	comment				is string
+      	purchased_on		is string
+      END
+      
+      
+      
+     type : 196608
+   -
+     type : 196627
+     enabled : false
+ code_parameters :
+  internal_properties : HwAAAB4AAAB7MB8NZB5rGUbyk77+IjQnJ74vm430Ar3yq0zmP05sGBBw0ur17uG6ZWry
+rad :
+ internal_properties : HwAAAB4AAABTxT1BYSJhinS0Rr2tVZtlHULaWZCyb2+DDk9U
+project_explorer :
+ explorer_type : project
+resources :
+ string_res :
+  identifier : 0x0
+  internal_properties : HwAAAB4AAAA809Qj/IAi+r8QXyrnW7sarQeYORCUjKBkmMeTFexSj5AuvTfTUpN0Eg==
+custom_note :
+ internal_properties : HwAAAB4AAAC/dEP3OEKHRk5sh5jQo2RHMGiRgxBOTuUSX9o+2aOnF5l3F7BzQC8eKa62

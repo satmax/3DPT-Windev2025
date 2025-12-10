@@ -1,0 +1,277 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cMESGateway
+ major_version : 30
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+ options : 256
+class :
+ identifier : 0x192868d801c7229f
+ internal_properties : HwAAAB4AAAD+1kTo6KJy2WQU0Y4fbFD6aQ7NWfD4KKkN7Ml67nIqLXIRxJ1vjfJ1
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cMESGateway is a Class
+      	m_sBaseURL is string
+      enD
+      
+     type : 131072
+   -
+     code : |1-
+      
+     type : 131074
+  procedures :
+   -
+     name : Constructor
+     procedure_id : 1812814126968742559
+     type_code : 27
+     code : |1+
+      procedure Constructor(psBaseURL is string)
+      m_sBaseURL = psBaseURL
+     type : 589824
+   -
+     name : Destructor
+     procedure_id : 1812814126968808095
+     type_code : 28
+     code : |1+
+      procedure Destructor()
+      
+     type : 655360
+   -
+     name : SendQuery
+     procedure_id : 1812819349655761024
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // SendQuery ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure SendQuery(psQuery is string) <business logic>
+      
+      cHttp is httpRequest
+      cHttp.URL			= m_sBaseURL
+      cHttp.Method		= httpPost
+      cHttp.ContentType	= "application/json"
+      cHttp.Content		= "{""query"":""" + psQuery + """}"
+      
+      res is httpResponse = HTTPSend(cHttp)
+      IF ErrorOccurred THEN
+      	RESULT ""
+      END
+      
+      RESULT res.Content
+     type : 458752
+   -
+     name : GetTables
+     procedure_id : 1812819852166985964
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      //[ <Result> = ] GetTables ()
+      //
+      // Parameters:
+      //	None
+      // Example:
+      // <Specify a usage example>
+      //
+      // Return value:
+      procedure GetTables() <business logic> :array of string
+      
+      // GraphQL-Query
+      sQuery		is string	= "query { tables }"
+      
+      // Anfrage senden
+      sResponse	is string	= SendQuery(sQuery)
+      
+      // JSON parsen
+      jResp		is variant	= JSONToVariant(sResponse)
+      
+      // Rückgabe-Array deklarieren (automatisch dynamisch)
+      arrTables	is array of string
+      
+      // Tabellen extrahieren
+      IF jResp.data.tables..Occurrence > 0 THEN
+      	FOR EACH sName OF jResp.data.tables
+      		arrTables += [sName] // Element anhängen
+      	END
+      END
+      
+      RESULT arrTables
+     type : 458752
+   -
+     name : GetRows
+     procedure_id : 1812820543659044699
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // GetRows ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure GetRows(psTable is string, pnLimit is int = 100) <business logic> : array of variant
+      
+      // GraphQL Query vorbereiten
+      sQuery is string = [
+      	query {
+      	rows(table: "%1", limit: %2)
+      	}
+      ]
+      sQuery = StringBuild(sQuery, psTable, pnLimit)
+      
+      // Anfrage senden
+      sResponse	is string	= SendQuery(sQuery)
+      
+      // JSON parse
+      jResp		is variant	= JSONToVariant(sResponse)
+      
+      // Rückgabe-Array deklarieren (automatisch dynamisch)
+      arrRows		is array of variant
+      
+      // Prüfen ob Daten vorhanden
+      IF jResp.data.rows..Occurrence > 0 THEN
+      
+      	FOR EACH jItem OF jResp.data.rows
+      		// jedes Row-Objekt in das Array pushen
+      		arrRows += [jItem]
+      	END
+      
+      END
+      
+      RESULT arrRows
+      
+     type : 458752
+   -
+     name : GetFilamentTypes
+     procedure_id : 1812820874376125271
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // GetFilamentTypes ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure GetFilamentTypes() <business logic> : array of variant
+      RESULT GetRows("FilamentTypes")
+      
+      
+     type : 458752
+   -
+     name : GetFilamentSpools
+     procedure_id : 1812821041884542200
+     type_code : 12
+     code : |1-
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // GetFilamentSpools ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure GetFilamentSpools() <business logic> : array of variant
+      
+      RESULT GetRows("FilamentSpools")
+     type : 458752
+   -
+     name : GetPrinters
+     procedure_id : 1812821192210791637
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // GetPrinters ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure GetPrinters() <business logic> : array of variant
+      RESULT GetRows("Printers")
+      
+     type : 458752
+   -
+     name : GetFilamentStorePositions
+     procedure_id : 1812821299587489327
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // GetFilamentStorePositions ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure GetFilamentStorePositions() <business logic> : array of variant
+      RESULT GetRows("FilamentStorePositions")
+      
+     type : 458752
+  properties :
+   -
+     name : BaseURL
+     identifier : 0x19286b69020228d9
+     type_code : 103
+     p_codes :
+      -
+        code : |1+
+         procedure public BaseURL():string
+         RESULT m_sBaseURL
+         
+        type : 1966080
+      -
+        code : |1+
+         procedure public BaseURL(pValue)
+         m_sBaseURL = pValue
+        type : 2031616
+     template_refs : []
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : HwAAAB4AAAB7MB8NZB5rGUbyk77+IjQnJ74vm430Ar3yq0zmP05sGBBw0ur17uG6ZWry
+  original_name : Class1
+resources :
+ string_res :
+  identifier : 0x192868cb01c4f093
+  internal_properties : HwAAAB4AAAA809Qj/IAi+r8QXyrnW7sarQeYORCUjKBkmMeTFexSj5AuvTfTUpN0Eg==
+custom_note :
+ internal_properties : HwAAAB4AAADnl3uxgA6ylw4vtqUKEOJQD3VAAOKeNUmhPNojcRFoDpHEcUyYAw==

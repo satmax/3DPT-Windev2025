@@ -1,0 +1,593 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : GlobalProcedures
+ major_version : 30
+ minor_version : 0
+ type : 7
+ description : ""
+ subtype : 0
+ options : 256
+procedure_set :
+ identifier : 0x19233439014268b0
+ internal_properties : HwAAAB4AAADjksEavC8JwuEiHc63C+ul0ggS/BOiC8PJfOp/6aEkSKX4qEWcBw==
+ code_elements :
+  type_code : 31
+  p_codes :
+   -
+     code : |1-
+       
+     type : 720896
+  procedures :
+   -
+     name : GetSpool4PTouchLabelPrinter
+     procedure_id : 1811348954701603234
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      //GetSpool4PTouchLabelPrinter ()
+      //
+      // Parameters:
+      //	None
+      // Example:
+      // <Specify a usage example>
+      //
+      // Return value:
+      procedure GetSpool4PTouchLabelPrinter()
+      spoolman	is cSpoolman
+      nSpoolAb	is int		= 65
+      nSpoolBis	is int		= 66
+      
+      sFile		is string	= "C:\PTOuchDB"
+      nFile		is int
+      sLine		is string	= ""
+      sTrenner	is string	= ","
+      // spoolman.m_sBaseURL = "http://192.168.x.x:9999"
+      
+      nSpoolAb	= LoadParameter("nIdFilamentAb")
+      nSpoolBis	= LoadParameter("nIdFilamentBis")
+      
+      
+      
+      // input.InputMask=maskAAlphaNum
+      //nSpool= val(Input("Bitte Nummer eingeben:",nSpool))
+      // nSpool=dialog("Bitte Nummer eingeben:",nSpool)
+      IF open(WIN_Eingabe_der_Filamentrolle,nSpoolAb, nSpoolBis) then
+      	// Hier die DB für P_Touch erstellen!
+      	// ASCCI, Trennzeichen ;
+      
+      	// win_main.EDT_Debug = ""
+      	win_main.EDT_Debug += CR+"Ab Spule: " +nSpoolAb +" bis: " + nSpoolBis +cr
+      	Multitask(-1)
+      
+      	IF NOT fDirExist(sFile) fMakeDir(sFile)
+      
+      	sFile	= CompleteDir(sFile)+"FilaBoxNFCLabelBox.csv"
+      
+      	nFile	= fOpen(sFile,foCreate)
+      
+      	if nFile > 0 then
+      		for i = nSpoolAb to nSpoolBis
+      			sp is stSpool = spoolman.GetSpool(i)
+      
+      			IF spoolman.GetLastError() <> "" THEN
+      				Info("Fehler: " + spoolman.GetLastError())
+      				WIN_Main.EDT_Debug += "Fehler: " + spoolman.GetLastError()
+      				RETURN
+      			END
+      
+      			if nFile > 0 then
+      				sLine=""
+      				sLine+= """"+"#"+ sp.filament_id +""""+sTrenner
+      				sLine+= """"+sp.filament_material+""""+sTrenner
+      				sLine+= """"+sp.filament_vendor_name+""""+sTrenner
+      				sLine+= """"+sp.filament_name+""""+sTrenner
+      				sLine+= """"+Replace(sp.filament_TempBereichNozzle,"""","")+""""+sTrenner
+      				sLine+= """"+Replace(sp.filament_TempBereichBed,"""","")+""""+sTrenner
+      				fWriteLine(nFile,sLine)
+      
+      				WIN_Main.EDT_Debug += sLine+CR
+      				Multitask(-1)
+      
+      			else
+      			END
+      		end
+      		fClose(nFile)
+      		ToastDisplay("Datei "+sFile+" erfolgreich erstellt.")
+      		WIN_Main.EDT_Debug += CR+CR+ "Datei "+sFile+" erfolgreich erstellt."+CR
+      	else
+      		ToastDisplay("Datei "+sFile+" kann nicht erstellt werden!")
+      		WIN_Main.EDT_Debug += CR+CR+ "Datei "+sFile+" kann nicht erstellt werden!"+CR
+      	end
+      	Multitask(-1)
+      
+      END
+      
+      
+      
+      // trace("Spule:", sp)
+      // TraceStructure(variant(sp))
+      // TraceStructure( JSONSerialize(myStruct, psJSONBeautify) )
+      //Trace( Serialize(stSpool)
+      
+      
+      // Trace(dbgInfo(dbgElement,sp))
+      
+      
+      
+      
+      //v is Variant = sp   // sp ist deine Struktur stSpool
+      //TraceStructure(v)
+      
+      
+      // Info("Spool geladen: " + sp.id + " / " + sp.spool_color)
+      
+     type : 458752
+   -
+     name : ExcelExport
+     procedure_id : 1812439558663920899
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // ExcelExport ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure ExcelExport()
+      
+      
+      open(WIN_ExcelExport)
+      
+      
+      
+     type : 458752
+   -
+     name : SP_API_Get
+     procedure_id : 1812715566035432702
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // SP_API_Get ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      // ======================================================================
+      // SP_API_Get
+      // ----------------------------------------------------------------------
+      // Zweck:
+      //     Führt einen HTTP-GET-Request zur SimplyPrint-API aus.
+      //     Behandelt Netzwerkfehler und HTTP-Statuscodes automatisch.
+      //
+      // Parameter:
+      //     pCompanyId (int)
+      //         Ihre SimplyPrint-Company-ID (z. B. 47218)
+      //
+      //     pAPIKey (string)
+      //         Ihr API-Token, wird im Header "X-API-KEY" mitgesendet.
+      //
+      //     pEndpoint (string)
+      //         Der API-Endpunkt, z. B. "filament/GetFilament".
+      //
+      // Rückgabe:
+      //     JSON-String bei Erfolg
+      //     "" (leer), wenn ein technischer Fehler aufgetreten ist.
+      //
+      // Hinweise:
+      //     - Alle Fehler werden bereits protokolliert.
+      //     - Rückgabewert immer auf Leerstring prüfen!
+      // ======================================================================
+      procedure SP_API_Get(pCompanyId is int, pAPIKey is string, pEndpoint is string) : string
+      
+      sURL	is string	= "https://api.simplyprint.io/" + pCompanyId + "/" + pEndpoint
+      
+      req		is httpRequest
+      req.Method				= httpGet
+      req.URL					= sURL
+      req.Header["accept"]	= "application/json"
+      req.Header["X-API-KEY"]	= pAPIKey
+      
+      res is httpResponse = HTTPSend(req)
+      
+      IF ErrorOccurred THEN
+      	Error("SimplyPrint API – Netzwerkfehler:", ErrorInfo(errFullDetails))
+      	RESULT ""
+      END
+      
+      IF res.StatusCode >= 400 THEN
+      	Error("SimplyPrint API – HTTP " + res.StatusCode + " Fehler:", res.Content)
+      	RESULT ""
+      END
+      
+      RESULT res.Content
+      
+      
+     type : 458752
+   -
+     name : SP_MapFilaments
+     procedure_id : 1812716038481880086
+     type_code : 15
+     code : |1+
+      // ======================================================================
+      // SP_MapFilaments
+      // ----------------------------------------------------------------------
+      // Zweck:
+      //     Wandelt den JSON-Response von SimplyPrint in ein Array der
+      //     Struktur stSPFilament um.
+      //
+      // Parameter:
+      //     sJSON (string)
+      //         JSON-String, wie von SP_API_Get geliefert.
+      //
+      // Rückgabe:
+      //     Array of stSPFilament
+      //
+      // Hinweis:
+      //     - Alle Felder werden vollständig befüllt.
+      //     - Tippfehler ausgeschlossen, da vollständige Strukturzuweisung.
+      // ======================================================================// Summary: <specify the procedure action>
+      // Syntax:
+      // SP_MapFilaments ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure SP_MapFilaments(sJSON is string) : array of stSPFilament
+      
+      arr		is array of stSPFilament
+      
+      root	is Variant	= JSONToVariant(sJSON)
+      
+      // Filament-Objekt extrahieren
+      vf		is Variant	= root.filament
+      
+      key		is string
+      rawItem	is Variant
+      parsed	is Variant
+      
+      FOR EACH key OF vf
+      
+      	// --- Wichtig: Objekt holen ---
+      	rawItem = vf[key]
+      
+      	// Wenn rawItem nur eine ID ist → neu parsen
+      	IF rawItem..Type = variantString THEN
+      		parsed = vf[rawItem]  // NEVER: parsed = rawItem
+      	ELSE
+      		parsed = rawItem
+      	END
+      
+      	// Struktur befüllen
+      	f is stSPFilament
+      
+      	f.id				= parsed.id
+      	f.name				= parsed.type.name
+      	f.brandId			= parsed.brand
+      	f.typeId			= parsed.type.id
+      	f.colorHex			= parsed.colorHex
+      	f.weightTotal		= parsed.total
+      	f.weightRemaining	= parsed.left
+      	f.isActive			= True
+      
+      	ArrayAdd(arr, f)
+      
+      END
+      
+      RESULT arr
+      
+      
+      
+     type : 458752
+   -
+     name : SP_MapBrands
+     procedure_id : 1812716467978906044
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // SP_MapBrands ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //// ======================================================================
+      // SP_MapBrands
+      // ----------------------------------------------------------------------
+      // Zweck:
+      //     Wandelt SimplyPrint-Brand-JSON in stSPBrand-Strukturen um.
+      //
+      // Rückgabe:
+      //     Array of stSPBrand
+      // ======================================================================
+      procedure SP_MapBrands(sJSON is string) : array of stSPBrand
+      
+      arr	is array of stSPBrand
+      v	is Variant	= JSONToVariant(sJSON)
+      
+      FOR EACH item OF v
+      	b is stSPBrand
+      
+      	b.id		= item.id
+      	b.name		= item.name
+      	b.website	= item.website
+      
+      	ArrayAdd(arr, b)
+      END
+      
+      RESULT arr
+      
+      
+     type : 458752
+   -
+     name : SP_MapMaterials
+     procedure_id : 1812716644072671622
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // SP_MapMaterials ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //// ======================================================================
+      // SP_MapMaterials
+      // ----------------------------------------------------------------------
+      // Zweck:
+      //     Wandelt SimplyPrint-Material-JSON in stSPMaterial um.
+      //
+      // Rückgabe:
+      //     Array of stSPMaterial
+      // ======================================================================
+      procedure SP_MapMaterials(sJSON is string) : array of stSPMaterial
+      
+      arr	is array of stSPMaterial
+      v	is Variant	= JSONToVariant(sJSON)
+      
+      FOR EACH item OF v
+      	m is stSPMaterial
+      	
+      	m.id		= item.id
+      	m.name		= item.name
+      	m.tempMin	= item.tempMin
+      	m.tempMax	= item.tempMax
+      	m.bedMin	= item.bedMin
+      	m.bedMax	= item.bedMax
+      	
+      	ArrayAdd(arr, m)
+      END
+      
+      RESULT arr
+      
+     type : 458752
+   -
+     name : SP_MapColors
+     procedure_id : 1812716781511657547
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // SP_MapColors ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      // ======================================================================
+      // SP_MapColors
+      // ----------------------------------------------------------------------
+      // Zweck:
+      //     Wandelt SimplyPrint-Color-JSON in stSPColor-Strukturen.
+      //
+      // Rückgabe:
+      //     Array of stSPColor
+      // ======================================================================
+      procedure SP_MapColors(sJSON is string) : array of stSPColor
+      
+      arr	is array of stSPColor
+      v	is Variant	= JSONToVariant(sJSON)
+      
+      FOR EACH item OF v
+      	c is stSPColor
+      	c.id	= item.id
+      	c.name	= item.name
+      	c.hex	= item.hex
+      	ArrayAdd(arr, c)
+      END
+      
+      RESULT arr
+      
+     type : 458752
+   -
+     name : SP_MapPrinters
+     procedure_id : 1812716979080264152
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // SP_MapPrinters ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //// ======================================================================
+      // SP_MapPrinters
+      // ----------------------------------------------------------------------
+      // Zweck:
+      //     Wandelt SimplyPrint-Printer-JSON in stSPPrinter.
+      //
+      // Rückgabe:
+      //     Array of stSPPrinter
+      // ======================================================================
+      procedure SP_MapPrinters(sJSON is string) : array of stSPPrinter
+      
+      arr	is array of stSPPrinter
+      v	is Variant	= JSONToVariant(sJSON)
+      
+      FOR EACH item OF v
+      	p is stSPPrinter
+      	
+      	p.id				= item.id
+      	p.name				= item.name
+      	p.online			= item.online
+      	p.status			= item.status
+      	p.progress			= item.progress
+      	p.tempNozzle		= item.nozzleTemp
+      	p.tempNozzleTarget	= item.nozzleTarget
+      	p.tempBed			= item.bedTemp
+      	p.tempBedTarget		= item.bedTarget
+      	
+      	ArrayAdd(arr, p)
+      END
+      
+      RESULT arr
+      
+     type : 458752
+   -
+     name : SP_Sample
+     procedure_id : 1812717172353838316
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // SP_Sample ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure SP_Sample()
+      // ======================================================================
+      // Beispiel: Filamente abrufen und ausgeben
+      // ======================================================================
+      
+      // 1. API-Call durchführen
+      sJSONFil is string = SP_API_Get(47218, sSimplyPrintToken, "filament/GetFilament")
+      
+      IF sJSONFil = "" THEN
+      	Info("Keine Daten erhalten – API-Fehler.")
+      	RETURN
+      END
+      
+      // 2. JSON in Strukturen mappen
+      arrFil is array of stSPFilament = SP_MapFilaments(sJSONFil)
+      
+      // 3. Ergebnisse weiterverarbeiten
+      FOR EACH f OF arrFil
+      	Trace("Filament: " + f.name + " | Material: " + f.materialName)
+      END
+      
+     type : 458752
+   -
+     name : _3DMES_MapTableRows
+     procedure_id : 1812822502192899102
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      //[ <Result> = ] _3DMES_MapTableRows (<j> is variant)
+      //
+      // Parameters:
+      //	j (variant): 
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure _3DMES_MapTableRows(j is Variant) : array of stRow
+      res is array of stRow
+      
+      IF j.rows..Occurrence > 0 THEN
+      	FOR EACH v OF j.rows
+      		r is stRow
+      		r.data = v
+      		ArrayAdd(res, r)
+      	END
+      END
+      
+      RESULT res
+      
+     type : 458752
+   -
+     name : _3DMES_MapFilamentType
+     procedure_id : 1812822875855075630
+     type_code : 15
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // _3DMES_MapFilamentType ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure _3DMES_MapFilamentType(j is Variant) : stFilamentType
+      res is stFilamentType
+      
+      res.FilamentTypeId		= j.FilamentTypeId
+      res.Color				= j.Color
+      res.Description			= j.Description
+      res.Diameter			= j.Diameter
+      res.BadTemperature		= j.BadTemperature
+      res.NozzleTemperature	= j.NozzleTemperature
+      res.Created				= j.Created
+      res.Updated				= j.Updated
+      res._Delete				= j.Delete
+      res.Manufacturer		= j.Manufacturer
+      res.Cost				= j.Cost
+      
+      RESULT res
+      
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : HwAAAB4AAAB7MB8NZB5rGUbyk77+IjQnJ74vm430Ar3yq0zmP05sGBBw0ur17uG6ZWry
+  original_name : SET_NoName1
+resources :
+ string_res :
+  identifier : 0x19233439014168b0
+  internal_properties : HwAAAB4AAAA809Qj/IAi+r8QXyrnW7sarQeYORCUjKBkmMeTFexSj5AuvTfTUpN0Eg==
+custom_note :
+ internal_properties : HwAAAB4AAADnl3uxgA6ylw4vtqUKEOJQD3VAAOKeNUmhPNojcRFoDpHEcUyYAw==

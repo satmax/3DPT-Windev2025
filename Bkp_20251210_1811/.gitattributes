@@ -1,0 +1,11 @@
+# WinDev Dateien explizit als TEXT definieren
+*.wd* text working-tree-encoding=UTF-8 eol=CRLF
+*.w* text working-tree-encoding=UTF-8 eol=CRLF
+
+# Spezifische Endungen sicherheitshalber auflisten
+*.wdw text diff
+*.wdg text diff
+*.wdc text diff
+*.wde text diff
+*.wdr text diff
+*.ana text diff

@@ -1,0 +1,743 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cSpoolman
+ major_version : 30
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+ options : 256
+class :
+ identifier : 0x192321e30009caa4
+ internal_properties : HwAAAB4AAAD+1kTo6KJy2WQU0Y4fbFD6aQ7NWfD4KKkN7Ml67nIqLXIRxJ1vjfJ1
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cSpoolman is a Class
+      	m_sBaseURL		is string
+      	m_sLastError	is string
+      end
+     type : 131072
+  procedures :
+   -
+     name : Constructor
+     procedure_id : 1811328733975071396
+     type_code : 27
+     code : |1+
+      procedure Constructor()
+      m_sBaseURL		= "http://192.168.0.138:9999/api/v1"
+      m_sLastError	= ""
+     type : 589824
+   -
+     name : Destructor
+     procedure_id : 1811328733975136932
+     type_code : 28
+     code : |1+
+      procedure Destructor()
+      
+     type : 655360
+   -
+     name : MeineNeueMethode
+     procedure_id : 1811329425464901782
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // MeineNeueMethode ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure MeineNeueMethode()
+      
+     type : 458752
+   -
+     name : GetLastError
+     procedure_id : 1811330026760462784
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // GetLastError ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure GetLastError()
+      RESULT m_sLastError
+     type : 458752
+   -
+     name : GetSpool
+     procedure_id : 1811330400422704599
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // GetSpool ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure GetSpool(nID is int) : stSpool
+      m_sLastError = ""
+      
+      // Rückgabe-Instanz vorbereiten
+      sp		is stSpool
+      
+      // URL
+      sURL	is string		= m_sBaseURL + "/spool/" + nID
+      
+      // HTTP
+      res		is httpResponse	= HTTPSend(sURL)
+      
+      // Fehler 1: Netzwerkfehler
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT sp
+      END
+      
+      // Fehler 2: HTTP nicht 200
+      IF res.StatusCode <> 200 THEN
+      	m_sLastError = res.Content
+      	RESULT sp
+      END
+      
+      // JSON → Variant
+      json is Variant = JSONToVariant(res.Content)
+      
+      // Variant → Struktur
+      sp = SpoolFromJSON(json)
+      
+      RESULT sp
+      
+     type : 458752
+   -
+     name : SpoolFromJSON
+     procedure_id : 1811337349680096557
+     type_code : 12
+     code : |1-
+      // Summary: <specify the procedure action>
+      // Syntax:
+      //[ <Result> = ] SpoolFromJSON (<json> is variant)
+      //
+      // Parameters:
+      //	json (variant): <specify the role of jsonData>
+      // Example:
+      // <Specify a usage example>
+      //
+      // Return value:
+      procedure private SpoolFromJSON(json is Variant) : stSpool
+      sp is stSpool
+      
+      // --- Direktwerte (oberste Ebene) ---
+      sp.id							= json.id
+      sp.filament_id					= json.filament.id    // <- verschachtelt!
+      sp.filament_name				= json.filament.name    //
+      sp.filament_material			= json.filament.material    //
+      sp.Filament_vendor_id			= json.filament.id    //
+      sp.Filament_vendor_name			= json.filament.vendor.name    //
+      sp.Filament_nozzleTemp			= json.filament.settings_extruder_temp    //
+      sp.filament_BedTemp				= json.filament.settings_bed_temp   //
+      sp.filament_ColorHex			= json.filament.color_hex    //
+      sp.filament_TempBereichNozzle	= json.filament.extra.nozzle_tempXYUNbekannt
+      sp.filament_TempBereichNozzle	= json.filament.extra.nozzle_temp
+      sp.filament_TempBereichBed		= json.filament.extra.bed_temp
+      sp.initial_weight				= json.initial_weight
+      sp.used_weight					= json.used_weight
+      sp.remaining_weight				= json.remaining_weight
+      sp.price						= json.price
+      sp.lot_nr						= json.lot_nr
+      sp.comment						= json.comment
+      sp.location						= json.location
+      sp.first_used					= json.first_used
+      sp.last_used					= json.last_used
+      sp.created_at					= json.created
+      sp.updated_at					= json.updated
+      sp.spool_color					= json.color          // <- korrekt laut API
+      sp.weight						= json.weight         // <- korrekt laut API
+      
+      RESULT sp
+     type : 458752
+   -
+     name : GetFilament
+     procedure_id : 1811340957454448674
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // GetFilament ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure GetFilament(nID is int) : stFilament
+      m_sLastError = ""
+      
+      // URL bauen
+      sURL	is string		= m_sBaseURL + "/filament/" + nID
+      
+      // HTTP Request
+      res		is httpResponse	= HTTPSend(sURL)
+      
+      // Fehlerprüfung
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT stFilament
+      END
+      
+      IF res.StatusCode <> 200 THEN
+      	m_sLastError = res.Content
+      	RESULT stFilament
+      END
+      
+      // JSON nach Variant
+      json is Variant = JSONToVariant(res.Content)
+      
+      // Mapping in Struktur
+      RESULT FilamentFromJSON(json)
+      
+      
+     type : 458752
+   -
+     name : FilamentFromJSON
+     procedure_id : 1811341146433774016
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      //FilamentFromJSON ()
+      //
+      // Parameters:
+      //	None
+      // Example:
+      // <Specify a usage example>
+      //
+      // Return value:
+      procedure private FilamentFromJSON(json is Variant) : stFilament
+      f is stFilament
+      
+      f.id				= json.id
+      f.name				= json.name
+      f.material			= json.material
+      f.manufacturer_id	= json.manufacturer_id
+      f.vendor_id			= json.vendor_id
+      f.color				= json.color
+      f.density			= json.density
+      f.diameter			= json.diameter
+      f.price				= json.price
+      f.spool_weight		= json.spool_weight
+      f.properties		= json.properties
+      
+      // --- Unterobjekte: Manufacturer ---
+      f.manufacturer.id	= json.manufacturer.id
+      f.manufacturer.name	= json.manufacturer.name
+      
+      // --- Unterobjekte: Vendor ---
+      f.vendor.id			= json.vendor.id
+      f.vendor.name		= json.vendor.name
+      
+      RESULT f
+      
+     type : 458752
+   -
+     name : GetAllSpools
+     procedure_id : 1811342791407024694
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      //[ <Result> = ] GetAllSpools ()
+      //
+      // Parameters:
+      //	None
+      // Example:
+      // <Specify a usage example>
+      //
+      // Return value:
+      procedure GetAllSpools() : array of stSpool
+      m_sLastError = ""
+      m_sLastError = ""
+      
+      // Resultarray vorbereiten
+      arr is array of stSpool
+      Dimension(arr, 0)
+      
+      // URL
+      sURL	is string		= m_sBaseURL + "/spool"
+      
+      // HTTP Request
+      res		is httpResponse	= HTTPSend(sURL)
+      
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT arr
+      END
+      
+      IF res.StatusCode <> 200 THEN
+      	m_sLastError = res.Content
+      	RESULT arr
+      END
+      
+      // JSON → Variant
+      json is Variant = JSONToVariant(res.Content)
+      
+      // durch alle Elemente iterieren
+      FOR EACH item OF json
+      	sp is stSpool = SpoolFromJSON(item)
+      	Add(arr, sp)
+      END
+      
+      RESULT arr
+      
+     type : 458752
+   -
+     name : GetAllFilaments
+     procedure_id : 1811343298213218914
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      //[ <Result> = ] GetAllFilaments ()
+      //
+      // Parameters:
+      //	None
+      // Example:
+      // <Specify a usage example>
+      //
+      // Return value:
+      procedure GetAllFilaments() : array of stFilament
+      m_sLastError = ""
+      //req.AdditionalHeader["X-API-KEY"]	= "123456"
+      //req.AdditionalHeader["Accept"]		= "application/json"
+      
+      // Ergebnisarray vorbereiten
+      arr is array of stFilament
+      Dimension(arr, 0)
+      
+      // URL
+      sURL	is string		= m_sBaseURL + "/filament"
+      
+      // HTTP Request
+      res		is httpResponse	= HTTPSend(sURL)
+      
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT arr
+      END
+      
+      IF res.StatusCode <> 200 THEN
+      	m_sLastError = res.Content
+      	RESULT arr
+      END
+      
+      // JSON → Variant
+      json is Variant = JSONToVariant(res.Content)
+      
+      // durch alle JSON-Objekte iterieren
+      FOR EACH item OF json
+      	fil is stFilament = FilamentFromJSON(item)
+      	Add(arr, fil)
+      END
+      
+      RESULT arr
+      
+     type : 458752
+   -
+     name : CreateSpool
+     procedure_id : 1811343551616348393
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // CreateSpool ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure CreateSpool(sp is stSpool) : boolean
+      m_sLastError = ""
+      
+      // JSON erzeugen
+      jsonBody	is string	= VariantToJSON(sp)
+      
+      // Request-Objekt erzeugen
+      req			is httpRequest
+      req.URL			= m_sBaseURL + "/spool"
+      req.Method		= httpPost
+      req.ContentType	= "application/json"
+      req.Content		= jsonBody
+      
+      // Request senden
+      resp is httpResponse = HTTPSend(req)
+      
+      // Fehler prüfen
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT False
+      END
+      
+      IF resp.StatusCode <> 201 THEN
+      	m_sLastError = resp.Content
+      	RESULT False
+      END
+      
+      
+      RESULT True
+      
+     type : 458752
+   -
+     name : UpdateSpool
+     procedure_id : 1811345024792832577
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // UpdateSpool ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //PUT verlangt immer ein vollständiges Objekt, daher VariantToJSON(sp).
+      // req.Method = httpPut ist in WD2025 der korrekte Enum-Typ.
+      // HTTPSend(req) ist die einzige gültige Syntax – alles andere ist deprecated.
+      // Fehlerbehandlung ident mit CreateSpool.
+      // Rückgabe: Boolean true/false nach Enterprise-Konvention.
+      //
+      procedure UpdateSpool(sp is stSpool) : boolean
+      m_sLastError = ""
+      
+      // --- Validierung ----------------------------------------------------
+      IF sp.id <= 0 THEN
+      	m_sLastError = "Invalid spool ID"
+      	RESULT False
+      END
+      
+      // --- JSON erzeugen --------------------------------------------------
+      jsonItem is Variant
+      
+      jsonItem.id					= sp.id
+      jsonItem.filament_id		= sp.filament_id
+      jsonItem.initial_weight		= sp.initial_weight
+      jsonItem.used_weight		= sp.used_weight
+      jsonItem.remaining_weight	= sp.remaining_weight
+      jsonItem.price				= sp.price
+      jsonItem.lot_nr				= sp.lot_nr
+      jsonItem.comment			= sp.comment
+      jsonItem.location			= sp.location
+      jsonItem.first_used			= sp.first_used
+      jsonItem.last_used			= sp.last_used
+      jsonItem.created_at			= sp.created_at
+      jsonItem.updated_at			= sp.updated_at
+      jsonItem.spool_color		= sp.spool_color
+      jsonItem.weight				= sp.weight
+      
+      // URL
+      sURL	is string	= m_sBaseURL + "/spool/" + sp.id
+      
+      // HTTP Request
+      req		is httpRequest
+      req.URL			= sURL
+      req.Method		= httpPut
+      req.Content		= VariantToJSON(jsonItem)
+      req.ContentType	= "application/json"
+      
+      // Senden
+      res is httpResponse = HTTPSend(req)
+      
+      // Fehlerprüfung
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT False
+      END
+      
+      // Spoolman akzeptiert 200 oder 204
+      IF res.StatusCode <> 200 AND res.StatusCode <> 204 THEN
+      	m_sLastError = res.Content
+      	RESULT False
+      END
+      
+      RESULT True
+     type : 458752
+   -
+     name : DeleteSpool
+     procedure_id : 1811345321146563114
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // DeleteSpool ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      // Spoolman liefert 200 (OK) oder 204 (kein Inhalt), beides ist Erfolg.
+      // Bei ungültiger ID kommt meist 404 → wir geben das sauber via m_sLastError zurück.
+      // DELETE benötigt keinen JSON-Body.
+      // 
+      procedure DeleteSpool(nID is int) : boolean
+      m_sLastError = ""
+      
+      // Request-Objekt aufbauen
+      req is httpRequest
+      req.URL			= m_sBaseURL + "/spool/" + nID
+      req.Method		= httpDelete
+      req.ContentType	= "application/json"
+      
+      // Request senden
+      resp is httpResponse = HTTPSend(req)
+      
+      // Fehlerhandling
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT False
+      END
+      
+      // Erfolgreich nur bei 200 oder 204
+      IF resp.StatusCode <> 200 AND resp.StatusCode <> 204 THEN
+      	m_sLastError = resp.Content
+      	RESULT False
+      END
+      
+      RESULT True
+      
+     type : 458752
+   -
+     name : CreateFilament
+     procedure_id : 1811346313285025953
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // CreateFilament ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure CreateFilament(f is stFilament) : boolean
+      m_sLastError = ""
+      
+      // JSON zusammenbauen
+      jsonBody is string = [
+      	{
+      	"name": "%1",
+      	"material": "%2",
+      	"manufacturer_id": %3,
+      	"vendor_id": %4,
+      	"color": "%5",
+      	"density": %6,
+      	"diameter": %7,
+      	"price": %8,
+      	"spool_weight": %9
+      	}
+      ]
+      
+      jsonBody = StringBuild(jsonBody,
+      f.name,
+      f.material,
+      f.manufacturer_id,
+      f.vendor_id,
+      f.color,
+      f.density,
+      f.diameter,
+      f.price, 
+      f.spool_weight)
+      
+      
+      // HTTP-Request vorbereiten
+      sURL	is string	= m_sBaseURL + "/filament"
+      
+      req		is httpRequest
+      req.URL			= sURL
+      req.Method		= httpPost
+      req.ContentType	= "application/json"
+      req.Content		= jsonBody
+      
+      res is httpResponse = HTTPSend(req)
+      
+      // Fehler prüfen
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT False
+      END
+      
+      IF res.StatusCode <> 201 AND res.StatusCode <> 200 THEN
+      	m_sLastError = res.Content
+      	RESULT False
+      END
+      
+      RESULT True
+      
+      
+      
+     type : 458752
+   -
+     name : UpdateFilament
+     procedure_id : 1811346656883472595
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // UpdateFilament ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure UpdateFilament(f is stFilament) : boolean
+      m_sLastError = ""
+      
+      // --- Validierung ----------------------------------------------------
+      IF f.id <= 0 THEN
+      	m_sLastError = "Invalid filament ID"
+      	RESULT False
+      END
+      
+      // --- JSON erzeugen --------------------------------------------------
+      jsonItem is Variant
+      
+      jsonItem.id					= f.id
+      jsonItem.name				= f.name
+      jsonItem.material			= f.material
+      jsonItem.manufacturer_id	= f.manufacturer_id
+      jsonItem.vendor_id			= f.vendor_id
+      jsonItem.color				= f.color
+      jsonItem.density			= f.density
+      jsonItem.diameter			= f.diameter
+      jsonItem.price				= f.price
+      jsonItem.spool_weight		= f.spool_weight
+      jsonItem.properties			= f.properties  // JSON string der API
+      
+      // URL für PUT
+      sURL	is string	= m_sBaseURL + "/filament/" + f.id
+      
+      // HTTP Request
+      req		is httpRequest
+      req.URL			= sURL
+      req.Method		= httpPut
+      req.Content		= VariantToJSON(jsonItem)
+      req.ContentType	= "application/json"
+      
+      // Request senden
+      res is httpResponse = HTTPSend(req)
+      
+      // Fehlerprüfung
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT False
+      END
+      
+      // Spoolman akzeptiert 200 oder 204
+      IF res.StatusCode <> 200 AND res.StatusCode <> 204 THEN
+      	m_sLastError = res.Content
+      	RESULT False
+      END
+      
+      RESULT True
+     type : 458752
+   -
+     name : DeleteFilament
+     procedure_id : 1811346905991633420
+     type_code : 12
+     code : |1+
+      // Summary: <specify the procedure action>
+      // Syntax:
+      // DeleteFilament ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // <Specify a usage example>
+      //
+      procedure DeleteFilament(nID is int) : boolean
+      m_sLastError = ""
+      
+      // Sicherheitscheck
+      IF nID <= 0 THEN
+      	m_sLastError = "Invalid filament ID"
+      	RESULT False
+      END
+      
+      // URL
+      sURL	is string	= m_sBaseURL + "/filament/" + nID
+      
+      // DELETE Request
+      req		is httpRequest
+      req.URL		= sURL
+      req.Method	= httpDelete
+      
+      res is httpResponse = HTTPSend(req)
+      
+      // Fehlerbehandlung
+      IF ErrorOccurred THEN
+      	m_sLastError = ErrorInfo(errFullDetails)
+      	RESULT False
+      END
+      
+      // Spoolman liefert 204 No Content oder 200
+      IF res.StatusCode <> 200 AND res.StatusCode <> 204 THEN
+      	m_sLastError = res.Content
+      	RESULT False
+      END
+      
+      RESULT True
+      
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : HwAAAB4AAAB7MB8NZB5rGUbyk77+IjQnJ74vm430Ar3yq0zmP05sGBBw0ur17uG6ZWry
+  original_name : Class1
+resources :
+ string_res :
+  identifier : 0x192321d700069c31
+  internal_properties : HwAAAB4AAAA809Qj/IAi+r8QXyrnW7sarQeYORCUjKBkmMeTFexSj5AuvTfTUpN0Eg==
+custom_note :
+ internal_properties : HwAAAB4AAADnl3uxgA6ylw4vtqUKEOJQD3VAAOKeNUmhPNojcRFoDpHEcUyYAw==
